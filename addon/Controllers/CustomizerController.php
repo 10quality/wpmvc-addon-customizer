@@ -33,12 +33,12 @@ class CustomizerController extends Controller
         if ( $config->get( 'settings.' . $setting_id . '.type' ) === 'option' ) {
             if ( preg_match( '/\[[\s\S]+\]/', $setting_id, $key ) ) {
                 $setting_id = str_replace( $key, '', $setting_id );
-                $key = preg_replace( '/\[|\]/', '', $key );
+                $key = preg_replace( '/\[|\]/', '', $key[0] );
             }
             $value = get_option( $setting_id );
-            if ( ! empty( $key ) )
-                $value = $value[$key];
-            return $value === null ? $default : $value;
+            if ( ! empty( $key ) && is_array( $value ) )
+                $value = array_key_exists( $key , $value ) ? $value[$key] : null;
+            return $value === null || is_array( $value ) ? $default : $value;
         }
         return get_theme_mod( $setting_id, $default );
     }

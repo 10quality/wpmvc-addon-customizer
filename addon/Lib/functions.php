@@ -18,10 +18,11 @@ if ( ! function_exists( 'wpmvc_addon_customizer_get_value' ) ) {
      * 
      * @param \WPMVC\Config &$config
      * @param string        $setting_id
+     * @param mixed         $default
      */
-    function wpmvc_addon_customizer_get_value( &$config, $setting_id )
+    function wpmvc_addon_customizer_get_value( &$config, $setting_id, $default = null )
     {
-        return CustomizerController::get_value( $config, $setting_id );
+        return CustomizerController::get_value( $config, $setting_id, $default );
     }
 }
 
