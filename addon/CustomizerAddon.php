@@ -22,8 +22,8 @@ class CustomizerAddon extends Addon
      */
     public function init()
     {
-        add_action( 'customize_register', [&$this, 'customize_register'], 99 );
-        add_action( 'wp_head', [&$this, 'wp_head'], 99 );
+        add_action( 'customize_register', [&$this, 'customizer_register'], 99 );
+        add_action( 'wp_head', [&$this, 'customizer_render'], 99 );
     }
     /**
      * Registers customizer settings.
@@ -33,7 +33,7 @@ class CustomizerAddon extends Addon
      * 
      * @param WP_Customize $wp_customize
      */
-    public function customize_register( $wp_customize  )
+    public function customizer_register( $wp_customize  )
     {
         $this->mvc->call( 'CustomizerController@register', $this->main, $wp_customize );
     }
@@ -43,7 +43,7 @@ class CustomizerAddon extends Addon
      * 
      * @hook wp_head
      */
-    public function wp_head()
+    public function customizer_render()
     {
         $this->mvc->call( 'CustomizerController@render', $this->main );
     }
