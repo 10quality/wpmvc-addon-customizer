@@ -2,6 +2,8 @@
 
 namespace WPMVC\Addons\Customizer\Controllers;
 
+use WP_Customize_Cropped_Image_Control;
+use WP_Customize_Upload_Control;
 use WP_Customize_Media_Control;
 use WP_Customize_Color_Control;
 use TenQuality\WP\File;
@@ -107,6 +109,14 @@ class CustomizerController extends Controller
                     case 'color':
                         unset( $options['type'] );
                         $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $id, $options ) );
+                        break;
+                    case 'upload':
+                        unset( $options['type'] );
+                        $wp_customize->add_control( new WP_Customize_Upload_Control( $wp_customize, $id, $options ) );
+                        break;
+                    case 'cropped-image':
+                        unset( $options['type'] );
+                        $wp_customize->add_control( new WP_Customize_Cropped_Image_Control( $wp_customize, $id, $options ) );
                         break;
                     case 'checkbox':
                     case 'textarea':
