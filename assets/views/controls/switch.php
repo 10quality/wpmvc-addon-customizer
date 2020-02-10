@@ -15,7 +15,7 @@
         <input id="<?php echo esc_attr( $control->id ) ?>" type="checkbox"
             name="<?php echo esc_attr( $control->id ) ?>"
             value="yes"
-            <?php if ( $control->value() === 'yes' : ?>checked<?php endif ?>
+            <?php if ( $control->value() === 'yes' ) : ?>checked<?php endif ?>
             <?php $control->link() ?>
             style="display:none"
         />
