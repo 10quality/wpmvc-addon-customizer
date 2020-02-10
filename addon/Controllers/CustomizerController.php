@@ -2,6 +2,7 @@
 
 namespace WPMVC\Addons\Customizer\Controllers;
 
+use ReflectionClass;
 use WP_Customize_Cropped_Image_Control;
 use WP_Customize_Upload_Control;
 use WP_Customize_Media_Control;
@@ -9,6 +10,7 @@ use WP_Customize_Color_Control;
 use TenQuality\WP\File;
 use WPMVC\Config;
 use WPMVC\MVC\Controller;
+use WPMVC\Addons\Customizer\Controls\SeparatorControl;
 
 /**
  * Customizer hooks and handling.
@@ -40,9 +42,19 @@ class CustomizerController extends Controller
             $value = get_option( $setting_id );
             if ( ! empty( $key ) && is_array( $value ) )
                 $value = array_key_exists( $key , $value ) ? $value[$key] : null;
-            return $value === null || is_array( $value ) ? $default : $value;
+            return apply_filters(
+                'wpmvc_addon_customizer_get_value',
+                $value === null || is_array( $value ) ? $default : $value,
+                $setting_id,
+                $config
+            );
         }
-        return get_theme_mod( $setting_id, $default );
+        return apply_filters(
+            'wpmvc_addon_customizer_get_value',
+            get_theme_mod( $setting_id, $default ),
+            $setting_id,
+            $config
+        );
     }
     /**
      * Prints a style line related to a customizer setting.
@@ -144,7 +156,8 @@ class CustomizerController extends Controller
                             break;
                         $control_class = $controls[$options['type']];
                         unset( $options['type'] );
-                        $wp_customize->add_control( new $control_class( $wp_customize, $id, $options ) );
+                        $reflector = new ReflectionClass( $control_class );
+                        $wp_customize->add_control( $reflector->newInstanceArgs( [$wp_customize, $id, $options] ) );
                         break;
                 }
             }
@@ -184,5 +197,20 @@ class CustomizerController extends Controller
         return ! isset( $customizer_data ) || empty( $customizer_data )
             ? null
             : new Config( $customizer_data );
+    }
+    /**
+     * Returns registered customizer controls.
+     * @since 1.0.1
+     * 
+     * @hook wpmvc_addon_customizer_controls
+     * 
+     * @param array $controls
+     * 
+     * @return array
+     */
+    public function controls( $controls = [] )
+    {
+        $controls[SeparatorControl::TYPE] = SeparatorControl::class;
+        return $controls;
     }
 }
