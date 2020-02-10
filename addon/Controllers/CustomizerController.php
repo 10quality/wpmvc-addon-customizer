@@ -13,6 +13,7 @@ use WPMVC\MVC\Controller;
 use WPMVC\Addons\Customizer\Controls\SeparatorControl;
 use WPMVC\Addons\Customizer\Controls\HeadingControl;
 use WPMVC\Addons\Customizer\Controls\AlertControl;
+use WPMVC\Addons\Customizer\Controls\SwitchControl;
 
 /**
  * Customizer hooks and handling.
@@ -215,6 +216,7 @@ class CustomizerController extends Controller
         $controls[SeparatorControl::TYPE] = SeparatorControl::class;
         $controls[HeadingControl::TYPE] = HeadingControl::class;
         $controls[AlertControl::TYPE] = AlertControl::class;
+        $controls[SwitchControl::TYPE] = SwitchControl::class;
         return $controls;
     }
 }

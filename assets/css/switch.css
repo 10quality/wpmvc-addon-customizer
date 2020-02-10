@@ -1,0 +1,49 @@
+/*!
+ * Customizer switch control.
+ * @link https://codepen.io/amostajo/pen/poJJoXa
+ * @author 10 Quality <info@10quality.com>
+ * @package wpmvc-addon-customizer
+ * @license MIT
+ * @version 1.0.2
+ */
+.customize-switch .switch {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.customize-switch .switch .controller {
+    position: relative;
+    overflow: hidden;
+    width: 50px;
+    height: 25px;
+}
+.customize-switch .switch .controller .switch-val {
+    width: 45px;
+    height: 25px;
+    text-align: center;
+    text-transform: uppercase;
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    transition: left 0.5s ease;
+}
+.customize-switch .switch .controller .switch-val.on {
+    background-color: #2196F3;
+    color: #ffffff;
+    border-right: 5px solid #ccc;
+    left: -40px;
+}
+.customize-switch .switch .controller .switch-val.on.active {
+    left: 0;
+}
+.customize-switch .switch .controller .switch-val.off {
+    background-color: #f9f9f9;
+    color: #777;
+    border-left: 5px solid #ccc;
+    left: 45px;
+}
+.customize-switch .switch .controller .switch-val.off.active {
+    left: 5px;
+}

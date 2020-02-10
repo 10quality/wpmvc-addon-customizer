@@ -12,7 +12,7 @@ use WPMVC\Addons\Customizer\CustomizerAddon;
  * @author 10 Quality <info@10quality.com>
  * @package wpmvc-addon-customizer
  * @license MIT
- * @version 1.0.1
+ * @version 1.0.2
  */
 class AlertControl extends WP_Customize_Control
 {
@@ -23,6 +23,13 @@ class AlertControl extends WP_Customize_Control
      * @var string
      */
     const TYPE = 'alert';
+    /**
+     * Control's Type.
+     * @since 1.0.2
+     * 
+     * @var string
+     */
+    public $type = self::TYPE;
     /**
      * Render the control in the customizer.
      * @since 1.0.1
