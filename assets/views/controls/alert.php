@@ -13,6 +13,7 @@
         <div class="heading customize-control-title"><b><?php echo $control->label ?></b></div>
     <?php endif ?>
     <?php if ( ! empty( $control->description ) ) : ?>
-        <div class="description customize-control-description"><?php echo $control->description ?></div>
+        <div class="description customize-control-description" style="<?php echo esc_attr( $control->input_attrs['description-style'] ) ?>"
+            ><?php echo $control->description ?></div>
     <?php endif ?>
 </div>

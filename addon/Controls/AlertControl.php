@@ -48,6 +48,7 @@ class AlertControl extends WP_Customize_Control
             $styles[] = $key . ':' . $value;
         }
         $this->input_attrs['style'] = implode( ';' , $styles ) . ';';
+        $this->input_attrs['description-style'] = 'color:' . $temp['color'] . ';';
         unset( $this->input_attrs['type'] );
     }
     /**
