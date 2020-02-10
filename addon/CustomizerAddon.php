@@ -57,10 +57,14 @@ class CustomizerAddon extends Addon
         $this->mvc->call( 'CustomizerController@render', $this->main );
     }
     /**
-     * Registers customizer controls.
+     * Returns registered customizer controls.
      * @since 1.0.1
      * 
      * @hook wpmvc_addon_customizer_controls
+     * 
+     * @param array $controls
+     * 
+     * @return array
      */
     public function customizer_controls( $controls )
     {

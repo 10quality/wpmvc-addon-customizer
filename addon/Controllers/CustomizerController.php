@@ -11,6 +11,7 @@ use TenQuality\WP\File;
 use WPMVC\Config;
 use WPMVC\MVC\Controller;
 use WPMVC\Addons\Customizer\Controls\SeparatorControl;
+use WPMVC\Addons\Customizer\Controls\HeadingControl;
 
 /**
  * Customizer hooks and handling.
@@ -20,7 +21,7 @@ use WPMVC\Addons\Customizer\Controls\SeparatorControl;
  * @author 10 Quality <info@10quality.com>
  * @package wpmvc-addon-customizer
  * @license MIT
- * @version 1.0.0
+ * @version 1.0.1
  */
 class CustomizerController extends Controller
 {
@@ -211,6 +212,7 @@ class CustomizerController extends Controller
     public function controls( $controls = [] )
     {
         $controls[SeparatorControl::TYPE] = SeparatorControl::class;
+        $controls[HeadingControl::TYPE] = HeadingControl::class;
         return $controls;
     }
 }
