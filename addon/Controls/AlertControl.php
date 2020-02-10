@@ -45,7 +45,7 @@ class AlertControl extends WP_Customize_Control
         );
         $styles = [];
         foreach ( $temp as $key => $value ) {
-            $styles[] = $key.'='.$value;
+            $styles[] = $key . ':' . $value;
         }
         $this->input_attrs['style'] = implode( ';' , $styles ) . ';';
         unset( $this->input_attrs['type'] );
@@ -61,7 +61,7 @@ class AlertControl extends WP_Customize_Control
         $styles = [];
         $temp = explode( ';', array_key_exists( 'style', $this->input_attrs ) && ! empty( $this->input_attrs['style'] ) ? trim( $this->input_attrs['style'] ) : '' );
         foreach ( $temp as $style ) {
-            list( $key, $value ) = explode( '=', $style );
+            list( $key, $value ) = explode( ':', $style );
             if ( ! empty( $key ) && ! empty( $value ) ) {
                 $styles[$key] = $value;
             }
