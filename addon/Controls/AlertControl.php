@@ -38,7 +38,7 @@ class AlertControl extends WP_Customize_Control
      */
     private function prepare_input_attrs()
     {
-        $type = array_key_exists( 'type', $this->input_attrs ) && ! empty( $this->input_attrs['type'] ) ? trim( $this->input_attrs['type'] ) : 'info';
+        $type = array_key_exists( 'type', $this->input_attrs ) && ! empty( $this->input_attrs['type'] ) ? trim( $this->input_attrs['type'] ) : '';
         $temp = array_merge(
             $this->get_type_styles( $type ),
             $this->get_styles_from_input()
