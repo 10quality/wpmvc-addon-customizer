@@ -67,6 +67,6 @@ class ChooseControl extends WP_Customize_Control
             return $choice;
         }, $this->choices );
         // Render
-        CustomizerAddon::view( 'controls.switch', ['control' => &$this] );
+        CustomizerAddon::view( 'controls.choose', ['control' => &$this] );
     }
 }
