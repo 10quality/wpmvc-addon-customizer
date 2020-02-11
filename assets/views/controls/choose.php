@@ -20,7 +20,9 @@
     </div>
     <div class="choose" <?php $control->input_attrs() ?>>
         <?php foreach ( $control->choices as $key => $options ) : ?>
-            <label for="choose-<?php echo esc_attr( $key ) ?>">
+            <label for="choose-<?php echo esc_attr( $key ) ?>"
+                <?php if ( array_key_exists( 'title', $options ) ) : ?>title="<?php echo esc_attr( $options['title'] ) ?>"<?php endif ?>
+                >
                 <input id="choose-<?php echo esc_attr( $key ) ?>"
                     type="radio"
                     name="<?php echo esc_attr( $control->id ) ?>"
