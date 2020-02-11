@@ -30,6 +30,12 @@
     align-items: center;
     cursor: pointer;
 }
+.customize-choose .choose label:first-child .choose-option {
+    border-radius: 5px 0 0 5px;
+}
+.customize-choose .choose label:last-child .choose-option {
+    border-radius: 0 5px 5px 0;
+}
 .customize-choose .choose .choose-option:hover {
     background: #DDD;
 }
