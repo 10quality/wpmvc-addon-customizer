@@ -43,7 +43,7 @@
                     <?php endif ?>
                 </div>
             </label>
-        <?php endif ?>
+        <?php endforeach ?>
     </div>
     <?php if ( ! empty( $control->description ) ) : ?>
         <div class="description customize-control-description"><?php echo $control->description ?></div>
