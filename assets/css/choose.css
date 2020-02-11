@@ -1,0 +1,39 @@
+/*!
+ * Customizer choose control.
+ * @link https://codepen.io/amostajo/pen/poJJoXa
+ * @author 10 Quality <info@10quality.com>
+ * @package wpmvc-addon-customizer
+ * @license MIT
+ * @version 1.0.3
+ */
+.customize-choose .choose {
+    display: inline-flex;
+    border: none;
+    align-items: stretch;
+    flex-wrap: wrap;
+    background: #FFFFFF;
+    border-radius: 5px;
+}
+.customize-choose .choose label {
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+.customize-choose .choose input[type="radio"] {
+    display: none;
+}
+.customize-choose .choose .choose-option {
+    padding: 5px 15px;
+    margin: 0;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.customize-choose .choose .choose-option:hover {
+    background: #DDD;
+}
+.customize-choose .choose input:checked ~ .choose-option {
+    background: #007cba;
+    color: #FFFFFF;
+}

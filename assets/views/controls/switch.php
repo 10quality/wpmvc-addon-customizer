@@ -7,7 +7,7 @@
  * @author 10 Quality <info@10quality.com>
  * @package wpmvc-addon-customizer
  * @license MIT
- * @version 1.0.2
+ * @version 1.0.3
  */
 ?>
 <div class="customize-switch wpmvc" <?php $control->input_attrs() ?>>
@@ -15,7 +15,7 @@
         <input id="<?php echo esc_attr( $control->id ) ?>" type="checkbox"
             name="<?php echo esc_attr( $control->id ) ?>"
             value="yes"
-            <?php if ( $control->value() === 'yes' ) : ?>checked<?php endif ?>
+            <?php if ( $control->value() === 'yes' ) : ?>checked="checked"<?php endif ?>
             <?php $control->link() ?>
             style="display:none"
         />
