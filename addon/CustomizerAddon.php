@@ -34,6 +34,7 @@ class CustomizerAddon extends Addon
         add_action( 'customize_register', [&$this, 'customizer_register'], 99 );
         add_action( 'wp_head', [&$this, 'customizer_render'], 99 );
         add_filter( 'wpmvc_addon_customizer_controls', [&$this, 'customizer_controls'], 1 );
+        add_filter( 'init', [&$this, 'register_filters'], 1 );
     }
     /**
      * Registers customizer settings.
@@ -70,6 +71,16 @@ class CustomizerAddon extends Addon
     public function customizer_controls( $controls )
     {
         return $this->mvc->action( 'CustomizerController@controls', $controls );
+    }
+    /**
+     * Registers special filters over settings.
+     * @since 1.0.4
+     * 
+     * @hook init
+     */
+    public function register_filters()
+    {
+        return $this->mvc->action( 'CustomizerController@register_filters', $this->main );
     }
     /**
      * Registers/enqueues general admin assets.

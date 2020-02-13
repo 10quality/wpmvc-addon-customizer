@@ -49,7 +49,7 @@ class CustomizerController extends Controller
                 $value = array_key_exists( $key , $value ) ? $value[$key] : null;
             return apply_filters(
                 'wpmvc_addon_customizer_get_value',
-                $value === null || is_array( $value ) ? $default : $value,
+                $value === null ? $default : $value,
                 $setting_id,
                 $config
             );
@@ -191,6 +191,8 @@ class CustomizerController extends Controller
      * Returns customizer.php configuration.
      * @since 1.0.0
      * 
+     * @param \WPMVC\Bridge $main
+     * 
      * @return \WPMVC\Config
      */
     public function get_config( $main )
@@ -254,5 +256,64 @@ class CustomizerController extends Controller
             $value[1] = '';
         $value[2] = $lock ? 'lock' : false;
         return $return_array ? $value : json_encode( $value );
+    }
+    /**
+     * Registers special filters over settings.
+     * @since 1.0.4
+     * 
+     * @hook init
+     * 
+     * @param \WPMVC\Bridge $main
+     */
+    public function register_filters( $main )
+    {
+        // Load configuration
+        $config = $this->get_config( $main );
+        if ( empty( $config ) )
+            return;
+        if ( is_array( $config->get( 'settings' ) ) )
+            foreach ( $config->get( 'settings' ) as $id => $options ) {
+                if ( !array_key_exists( 'sanitize_callback', $options ) )
+                    continue;
+                switch ( $options['sanitize_callback'] ) {
+                    case 'customizer_sanitize_size':
+                        $this->add_sanitize_filter_for_setting( $id, $options, 'sanitize_size_array' );
+                        break;
+                }
+            }
+    }
+    /**
+     * Add a sanitized special filter for a setting.
+     * The filter is applied based on the type of storage.
+     * @since 1.0.4
+     * 
+     * @param string &$setting_id
+     * @param array  &$options
+     * @param string $method      Method in class to used for filter hook.
+     */
+    private function add_sanitize_filter_for_setting( &$setting_id, &$options, $method )
+    {
+        add_filter(
+            array_key_exists( 'type', $options ) && $options['type'] === 'option'
+                ? 'option_' . $setting_id
+                : 'theme_mod_' . $setting_id,
+            [&$this, $method],
+            1
+        );
+    }
+    /**
+     * Returns value as a sanitized size array.
+     * @since 1.0.4
+     * 
+     * @hook option_{setting_id}
+     * @hook theme_mod_{setting_id}
+     * 
+     * @param string $value
+     * 
+     * @return array
+     */
+    public function sanitize_size_array( $value )
+    {
+        return $this->sanitize_size( $value, true );
     }
 }
