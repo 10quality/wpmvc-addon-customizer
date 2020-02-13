@@ -44,7 +44,7 @@ class SizeControl extends WP_Customize_Control
         );
         wp_enqueue_script(
             'customizer_size',
-            addon_assets_url( 'js/size.js', __DIR__ ),
+            addon_assets_url( 'js/jquery.size.js', __DIR__ ),
             ['jquery'],
             '1.0.4'
         );
@@ -67,6 +67,7 @@ class SizeControl extends WP_Customize_Control
             'data_type' => $this->get_input_data_type(),
             'unit'      => $this->get_size_unit(),
             'control'   => &$this,
+            'value'     => customizer_sanitize_size( $control->value() ),
         ] );
     }
     /**

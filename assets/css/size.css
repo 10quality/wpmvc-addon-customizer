@@ -11,7 +11,7 @@
     flex-direction: row;
     align-items: center;
     background: #ddd;
-    border: 1px solid #ccc;
+    border: 1px solid #7e8993;
     border-radius: 5px;
 }
 .customize-size .size input[type="number"] {
@@ -21,6 +21,7 @@
     margin: 0;
     text-align: right;
     position: relative;
+    border-radius: 0;
 }
 .customize-size .size .size-width:before {
     content: "\f07e";
