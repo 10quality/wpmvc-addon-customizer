@@ -82,7 +82,14 @@ class CustomizerController extends Controller
                 $value = $value[0];
         }
         // Print
-        printf( $style, $value );
+        if ( is_array( $value ) ) {
+            foreach ( $value as $key => $data ) {
+                $style = str_replace( '{' . $key . '}', $data, $style );
+            }
+            print( $style );
+        } else {
+            printf( $style, $value );
+        }
     }
     /**
      * Registers customizer customizations.
