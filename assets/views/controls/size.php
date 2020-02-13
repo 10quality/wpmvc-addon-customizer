@@ -25,7 +25,7 @@
             <?php $control->link() ?>
         />
         <label for="<?php echo esc_attr( $control->id ) ?>-lock" class="lock"
-            title="<?php echo esc_attr( 'Restrict proportions and aspect ratio', 'wpmvc-addon-customizer' ) ?>">
+            title="<?php echo esc_attr( 'Restrict proportions', 'wpmvc-addon-customizer' ) ?>">
             <input id="<?php echo esc_attr( $control->id ) ?>-lock"
                 type="checkbox"
                 name="size-<?php echo esc_attr( $control->id ) ?>[2]"

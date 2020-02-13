@@ -66,7 +66,7 @@
                 if ( input_val === '' || input_val === null || input_val === undefined )
                     input_val = 0;
                 var input_val = self.methods.parse_val( input_val );
-                target_val = target_val + ( input_val - self.prev_value );
+                target_val = input_val;
                 $target.val( target_val <=  0 ? '' : target_val );
                 self.restrict = false; // Prevent replication
                 self.prev_value = input_val;
