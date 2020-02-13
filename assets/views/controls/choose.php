@@ -7,7 +7,7 @@
  * @author 10 Quality <info@10quality.com>
  * @package wpmvc-addon-customizer
  * @license MIT
- * @version 1.0.3
+ * @version 1.0.5
  */
 ?>
 <div id="<?php echo esc_attr( $control->id ) ?>" class="customize-choose wpmvc">
@@ -18,6 +18,9 @@
             <strong class="customize-control-label"><b><?php echo $control->id ?></b></strong>
         <?php endif ?>
     </div>
+    <?php if ( ! empty( $control->description ) ) : ?>
+        <div class="description customize-control-description"><?php echo $control->description ?></div>
+    <?php endif ?>
     <div class="choose" <?php $control->input_attrs() ?>>
         <?php foreach ( $control->choices as $key => $options ) : ?>
             <label for="choose-<?php echo esc_attr( $key ) ?>"
@@ -45,7 +48,4 @@
             </label>
         <?php endforeach ?>
     </div>
-    <?php if ( ! empty( $control->description ) ) : ?>
-        <div class="description customize-control-description"><?php echo $control->description ?></div>
-    <?php endif ?>
 </div>

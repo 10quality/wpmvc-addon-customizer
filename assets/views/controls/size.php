@@ -7,7 +7,7 @@
  * @author 10 Quality <info@10quality.com>
  * @package wpmvc-addon-customizer
  * @license MIT
- * @version 1.0.4
+ * @version 1.0.5
  */
 ?>
 <div class="customize-size wpmvc">
@@ -18,6 +18,9 @@
             <strong class="customize-control-label"><b><?php echo $control->id ?></b></strong>
         <?php endif ?>
     </div>
+    <?php if ( ! empty( $control->description ) ) : ?>
+        <div class="description customize-control-description"><?php echo $control->description ?></div>
+    <?php endif ?>
     <div class="size" data-type="<?php echo esc_attr( $data_type ) ?>" role="size">
         <input type="hidden"
             name="<?php echo esc_attr( $control->id ) ?>"
@@ -56,7 +59,4 @@
         </label>
         <div class="unit"><?php echo esc_attr( $unit ) ?></div>
     </div>
-    <?php if ( ! empty( $control->description ) ) : ?>
-        <div class="description customize-control-description"><?php echo $control->description ?></div>
-    <?php endif ?>
 </div>
