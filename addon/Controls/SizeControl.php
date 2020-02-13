@@ -67,7 +67,7 @@ class SizeControl extends WP_Customize_Control
             'data_type' => $this->get_input_data_type(),
             'unit'      => $this->get_size_unit(),
             'control'   => &$this,
-            'value'     => customizer_sanitize_size( $control->value() ),
+            'value'     => customizer_sanitize_size( $this->value() ),
         ] );
     }
     /**

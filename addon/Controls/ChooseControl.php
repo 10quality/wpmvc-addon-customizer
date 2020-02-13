@@ -61,7 +61,7 @@ class ChooseControl extends WP_Customize_Control
                 $choice['type'] = 'url';
             } elseif ( preg_match( '/^dashicons-/', $choice['value'] ) ) {
                 $choice['type'] = 'dashicon';
-            } elseif ( preg_match( '/^dashicons-/', $choice['fa'] ) ) {
+            } elseif ( preg_match( '/^fa-/', $choice['value'] ) ) {
                 $choice['type'] = 'fa';
             }
             return $choice;
