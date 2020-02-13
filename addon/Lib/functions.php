@@ -49,11 +49,12 @@ if ( ! function_exists( 'customizer_sanitize_size' ) ) {
      * @since 1.0.4
      * 
      * @param array $value
+     * @param bool  $return_array Flag that indicates if value should be returned as array or not.
      * 
      * @return array
      */
-    function customizer_sanitize_size( $value )
+    function customizer_sanitize_size( $value, $return_array = false )
     {
-        return CustomizerController::sanitize_size( $value );
+        return CustomizerController::sanitize_size( $value, $return_array );
     }
 }

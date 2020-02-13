@@ -25,6 +25,7 @@
                 self.elements.$lock = self.$el.find( 'input[role="lock"]' );
                 self.elements.$width = self.$el.find( 'input[role="width"]' );
                 self.elements.$height = self.$el.find( 'input[role="height"]' );
+                self.elements.$hidden = self.$el.find( 'input[type="hidden"]' );
                 self.elements.$width.on( 'focus', self.methods.set_prev_val );
                 self.elements.$height.on( 'focus', self.methods.set_prev_val );
                 self.elements.$width.on( 'change', self.methods.on_width );
@@ -42,14 +43,14 @@
             on_width: function( event ) {
                 if ( ! self.restrict || ! self.methods.is_locked() ) {
                     self.restrict = true; // used to prevent replication
-                    return;
+                    return self.methods.update_hidden();
                 }
                 self.methods.restrict_proportions( $( this ), self.elements.$height );
             },
             on_height: function( event ) {
                 if ( ! self.restrict || ! self.methods.is_locked() ) {
                     self.restrict = true; // used to prevent replication
-                    return;
+                    return self.methods.update_hidden();
                 }
                 self.methods.restrict_proportions( $( this ), self.elements.$width );
             },
@@ -70,6 +71,15 @@
                 self.restrict = false; // Prevent replication
                 self.prev_value = input_val;
                 $target.change();
+            },
+            update_hidden: function()
+            {
+                self.elements.$hidden.val( JSON.stringify( [
+                    self.elements.$width.val(),
+                    self.elements.$height.val(),
+                    self.elements.$lock.is(':checked') ? self.elements.$lock.val() : '',
+                ] ) );
+                self.elements.$hidden.change();
             },
         };
         self.methods.init();

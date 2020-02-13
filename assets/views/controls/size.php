@@ -19,11 +19,16 @@
         <?php endif ?>
     </div>
     <div class="size" data-type="<?php echo esc_attr( $data_type ) ?>" role="size">
+        <input type="hidden"
+            name="<?php echo esc_attr( $control->id ) ?>"
+            value="<?php echo esc_attr( $control->value() ) ?>"
+            <?php $control->link() ?>
+        />
         <label for="<?php echo esc_attr( $control->id ) ?>-lock" class="lock"
             title="<?php echo esc_attr( 'Restrict proportions and aspect ratio', 'wpmvc-addon-customizer' ) ?>">
             <input id="<?php echo esc_attr( $control->id ) ?>-lock"
                 type="checkbox"
-                name="<?php echo esc_attr( $control->id ) ?>[2]"
+                name="size-<?php echo esc_attr( $control->id ) ?>[2]"
                 value="lock"
                 style="display:none"
                 role="lock"
@@ -33,22 +38,20 @@
         <label for="<?php echo esc_attr( $control->id ) ?>-width" class="size-width">
             <input id="<?php echo esc_attr( $control->id ) ?>-width"
                 type="number"
-                name="<?php echo esc_attr( $control->id ) ?>[0]"
+                name="size-<?php echo esc_attr( $control->id ) ?>[0]"
                 role="width"
-                value="<?php esc_attr( $value[0] ) ?>"
+                value="<?php echo esc_attr( $value[0] ) ?>"
                 <?php $control->input_attrs() ?>
-                <?php $control->link() ?>
             />
         </label>
         <div class="separator">x</div>
         <label for="<?php echo esc_attr( $control->id ) ?>-height" class="size-height">
             <input id="<?php echo esc_attr( $control->id ) ?>-height"
                 type="number"
-                name="<?php echo esc_attr( $control->id ) ?>[1]"
+                name="size-<?php echo esc_attr( $control->id ) ?>[1]"
                 role="height"
-                value="<?php esc_attr( $value[1] ) ?>"
+                value="<?php echo esc_attr( $value[1] ) ?>"
                 <?php $control->input_attrs() ?>
-                <?php $control->link() ?>
             />
         </label>
         <div class="unit"><?php echo esc_attr( $unit ) ?></div>

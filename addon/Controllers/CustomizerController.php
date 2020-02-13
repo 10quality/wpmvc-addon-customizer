@@ -230,11 +230,13 @@ class CustomizerController extends Controller
      * @see addon/Libg/functions.php::customizer_sanitize_size
      * 
      * @param array $value
+     * @param bool  $return_array Flag that indicates if value should be returned as array or not.
      * 
      * @return array
      */
-    public function sanitize_size( $value )
+    public function sanitize_size( $value, $return_array = false )
     {
+        $value = is_string( $value ) ? json_decode( $value ) : $value;
         if ( empty( $value ) || !is_array( $value ) )
             return ['','',false];
         $lock = false;
@@ -251,6 +253,6 @@ class CustomizerController extends Controller
         if ( ! array_key_exists( 1, $value ) || ! is_numeric( $value[1] ) )
             $value[1] = '';
         $value[2] = $lock ? 'lock' : false;
-        return $value;
+        return $return_array ? $value : json_encode( $value );
     }
 }
