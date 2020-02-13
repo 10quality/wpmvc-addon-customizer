@@ -91,7 +91,7 @@ class SizeControl extends WP_Customize_Control
     private function get_size_unit()
     {
         $unit = 'px'; // Pixels
-        if ( !array_key_exists( 'unit', $this->input_attrs ) ) {
+        if ( array_key_exists( 'unit', $this->input_attrs ) && !empty( $this->input_attrs['unit'] ) ) {
             $unit = $this->input_attrs['unit'];
             unset( $this->input_attrs['unit'] );
         }
