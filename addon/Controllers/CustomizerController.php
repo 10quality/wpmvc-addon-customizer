@@ -15,6 +15,7 @@ use WPMVC\Addons\Customizer\Controls\HeadingControl;
 use WPMVC\Addons\Customizer\Controls\AlertControl;
 use WPMVC\Addons\Customizer\Controls\SwitchControl;
 use WPMVC\Addons\Customizer\Controls\ChooseControl;
+use WPMVC\Addons\Customizer\Controls\SizeControl;
 
 /**
  * Customizer hooks and handling.
@@ -24,7 +25,7 @@ use WPMVC\Addons\Customizer\Controls\ChooseControl;
  * @author 10 Quality <info@10quality.com>
  * @package wpmvc-addon-customizer
  * @license MIT
- * @version 1.0.3
+ * @version 1.0.4
  */
 class CustomizerController extends Controller
 {
@@ -219,6 +220,37 @@ class CustomizerController extends Controller
         $controls[AlertControl::TYPE] = AlertControl::class;
         $controls[SwitchControl::TYPE] = SwitchControl::class;
         $controls[ChooseControl::TYPE] = ChooseControl::class;
+        $controls[SizeControl::TYPE] = SizeControl::class;
         return $controls;
+    }
+    /**
+     * Returns sanitized size value.
+     * @since 1.0.4
+     * 
+     * @see addon/Libg/functions.php::customizer_sanitize_size
+     * 
+     * @param array $value
+     * 
+     * @return array
+     */
+    public function sanitize_size( $value )
+    {
+        if ( empty( $value ) || !is_array( $value ) )
+            return ['','',false];
+        $lock = false;
+        $value = array_map( function( $array_value ) use( &$lock ) {
+            if ( $array_value === 'lock' ) {
+                $lock = true;
+            }
+            return is_numeric( $array_value )
+                ? ( strpos( $array_value, '.' ) !== false ? floatval( $array_value ) : intval( $array_value ) )
+                : '';
+        }, $value );
+        if ( ! is_numeric( $value[0] ) )
+            $value[0] = '';
+        if ( ! array_key_exists( 1, $value ) || ! is_numeric( $value[1] ) )
+            $value[1] = '';
+        $value[2] = $lock ? 'lock' : false;
+        return $value;
     }
 }

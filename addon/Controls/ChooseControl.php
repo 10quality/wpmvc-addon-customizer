@@ -12,7 +12,7 @@ use WPMVC\Addons\Customizer\CustomizerAddon;
  * @author 10 Quality <info@10quality.com>
  * @package wpmvc-addon-customizer
  * @license MIT
- * @version 1.0.3
+ * @version 1.0.4
  */
 class ChooseControl extends WP_Customize_Control
 {
@@ -39,13 +39,13 @@ class ChooseControl extends WP_Customize_Control
         wp_enqueue_style(
             'customizer_choose',
             addon_assets_url( 'css/choose.css', __DIR__ ),
-            [],
+            ['font-awesome'],
             '1.0.3'
         );
     }
     /**
      * Render the control in the customizer.
-     * @since 1.0.2
+     * @since 1.0.3
      */
     public function render_content()
     {

@@ -12,7 +12,7 @@ use WPMVC\Addon;
  * @author 10 Quality <info@10quality.com>
  * @package wpmvc-addon-customizer
  * @license MIT
- * @version 1.0.1
+ * @version 1.0.4
  */
 class CustomizerAddon extends Addon
 {
@@ -30,6 +30,7 @@ class CustomizerAddon extends Addon
     public function init()
     {
         static::$instance = $this;
+        add_action( 'admin_enqueue_scripts', [&$this, 'admin_enqueue'], 99 );
         add_action( 'customize_register', [&$this, 'customizer_register'], 99 );
         add_action( 'wp_head', [&$this, 'customizer_render'], 99 );
         add_filter( 'wpmvc_addon_customizer_controls', [&$this, 'customizer_controls'], 1 );
@@ -69,6 +70,21 @@ class CustomizerAddon extends Addon
     public function customizer_controls( $controls )
     {
         return $this->mvc->action( 'CustomizerController@controls', $controls );
+    }
+    /**
+     * Registers/enqueues general admin assets.
+     * @since 1.0.4
+     * 
+     * @hook admin_enqueue_scripts
+     */
+    public function admin_enqueue()
+    {
+        wp_register_style(
+            'font-awesome',
+            addon_assets_url( 'css/font-awesome.min.css', __DIR__ ),
+            [],
+            '4.7.0'
+        );
     }
     /**
      * Renders an addon view.

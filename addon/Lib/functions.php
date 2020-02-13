@@ -42,3 +42,18 @@ if ( ! function_exists( 'wpmvc_addon_customizer_print_style' ) ) {
         CustomizerController::print_style( $config, $setting_id, $style, $value, $media_size );
     }
 }
+
+if ( ! function_exists( 'customizer_sanitize_size' ) ) {
+    /**
+     * Sanitizes size values.
+     * @since 1.0.4
+     * 
+     * @param array $value
+     * 
+     * @return array
+     */
+    function customizer_sanitize_size( $value )
+    {
+        return CustomizerController::sanitize_size( $value );
+    }
+}

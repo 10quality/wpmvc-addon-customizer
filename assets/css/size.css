@@ -1,0 +1,83 @@
+/*!
+ * Customizer size control.
+ * @link https://codepen.io/amostajo/pen/mdJebyM
+ * @author 10 Quality <info@10quality.com>
+ * @package wpmvc-addon-customizer
+ * @license MIT
+ * @version 1.0.4
+ */
+.customize-size .size {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    background: #ddd;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.customize-size .size input[type="number"] {
+    border: none;
+    width: 70px;
+    line-height: 32px;
+    margin: 0;
+    text-align: right;
+    position: relative;
+}
+.customize-size .size .size-width:before {
+    content: "\f07e";
+    font-family: FontAwesome;
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 2px;
+    font-size: 11px;
+    color: #aaa;
+}
+.customize-size .size .size-height:before {
+    content: "\f07d";
+    font-family: FontAwesome;
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 2px;
+    font-size: 11px;
+    color: #aaa;
+}
+.customize-size .size .size-width:hover:before {
+    color: #ddd;
+}
+.customize-size .size .size-height:hover:before {
+    color: #ddd;
+}
+.customize-size .size label {
+    margin: 0;
+    position: relative;
+}
+.customize-size .size .separator {
+    padding: 0 5px;
+    color: #777;
+    font-weight: 600;
+}
+.customize-size .size .unit {
+    padding: 0 10px;
+    color: #777;
+    font-weight: 600;
+}
+.customize-size .size .lock {
+    padding: 0 10px;
+    color: #777;
+    font-weight: 600;
+    cursor: pointer;
+}
+.customize-size .size .lock .icon:after {
+    content: "\f13e";
+    font-family: FontAwesome;
+    top: 0;
+    left: 0;
+    color: #999;
+    z-index: 2;
+}
+.customize-size .size input[type="checkbox"]:checked ~ .icon:after {
+    content: "\f023";
+    font-family: FontAwesome;
+    color: #007cba;
+}
