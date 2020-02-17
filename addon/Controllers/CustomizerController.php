@@ -25,7 +25,7 @@ use WPMVC\Addons\Customizer\Controls\SizeControl;
  * @author 10 Quality <info@10quality.com>
  * @package wpmvc-addon-customizer
  * @license MIT
- * @version 1.0.4
+ * @version 1.0.5
  */
 class CustomizerController extends Controller
 {
@@ -204,13 +204,7 @@ class CustomizerController extends Controller
      */
     public function get_config( $main )
     {
-        $filename = $main->config->get( 'paths.base' ) . 'Config/customizer.php';
-        if ( ! File::auth()->is_file( $filename ) )
-            return null;
-        $customizer_data = include $filename;
-        return ! isset( $customizer_data ) || empty( $customizer_data )
-            ? null
-            : new Config( $customizer_data );
+        return $main->load_config( 'customizer' );
     }
     /**
      * Returns registered customizer controls.
