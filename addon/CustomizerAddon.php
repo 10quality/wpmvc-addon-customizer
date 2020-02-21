@@ -12,7 +12,7 @@ use WPMVC\Addon;
  * @author 10 Quality <info@10quality.com>
  * @package wpmvc-addon-customizer
  * @license MIT
- * @version 1.0.4
+ * @version 1.0.5
  */
 class CustomizerAddon extends Addon
 {
@@ -92,7 +92,7 @@ class CustomizerAddon extends Addon
     {
         wp_register_style(
             'font-awesome',
-            addon_assets_url( 'css/font-awesome.min.css', __DIR__ ),
+            addon_assets_url( 'css/font-awesome.min.css', __FILE__ ),
             [],
             '4.7.0'
         );
