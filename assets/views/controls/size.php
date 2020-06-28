@@ -7,7 +7,7 @@
  * @author 10 Quality <info@10quality.com>
  * @package wpmvc-addon-customizer
  * @license MIT
- * @version 1.0.5
+ * @version 1.0.6.1
  */
 ?>
 <div class="customize-size wpmvc">
@@ -24,7 +24,7 @@
     <div class="size" data-type="<?php echo esc_attr( $data_type ) ?>" role="size">
         <input type="hidden"
             name="<?php echo esc_attr( $control->id ) ?>"
-            value="<?php echo esc_attr( $control->value() ) ?>"
+            value="<?php echo esc_attr( is_array( $control->value() ) ? json_encode( $control->value() ) : $control->value() ) ?>"
             <?php $control->link() ?>
         />
         <label for="<?php echo esc_attr( $control->id ) ?>-lock" class="lock"
