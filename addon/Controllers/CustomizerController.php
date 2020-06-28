@@ -25,7 +25,7 @@ use WPMVC\Addons\Customizer\Controls\SizeControl;
  * @author 10 Quality <info@10quality.com>
  * @package wpmvc-addon-customizer
  * @license MIT
- * @version 1.0.5
+ * @version 1.0.6
  */
 class CustomizerController extends Controller
 {
@@ -237,7 +237,7 @@ class CustomizerController extends Controller
      * 
      * @return array
      */
-    public function sanitize_size( $value, $return_array = false )
+    public static function sanitize_size( $value, $return_array = false )
     {
         $value = is_string( $value ) ? json_decode( $value ) : $value;
         if ( empty( $value ) || !is_array( $value ) )
@@ -315,6 +315,6 @@ class CustomizerController extends Controller
      */
     public function sanitize_size_array( $value )
     {
-        return $this->sanitize_size( $value, true );
+        return self::sanitize_size( $value, true );
     }
 }
