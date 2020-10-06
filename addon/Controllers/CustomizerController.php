@@ -25,7 +25,7 @@ use WPMVC\Addons\Customizer\Controls\SizeControl;
  * @author 10 Quality <info@10quality.com>
  * @package wpmvc-addon-customizer
  * @license MIT
- * @version 1.0.6
+ * @version 1.0.7
  */
 class CustomizerController extends Controller
 {
@@ -107,22 +107,22 @@ class CustomizerController extends Controller
         // Register configuration
         // -- Panels
         if ( is_array( $config->get( 'panels' ) ) )
-            foreach ( $config->get( 'panels' ) as $id => $options ) {
+            foreach ( apply_filters( 'wpmvc_addon_customizer_panels_' . $main->config->get( 'namespace' ), $config->get( 'panels' ) ) as $id => $options ) {
                 $wp_customize->add_panel( $id, $options );
             }
         // -- Sections
         if ( is_array( $config->get( 'sections' ) ) )
-            foreach ( $config->get( 'sections' ) as $id => $options ) {
+            foreach ( apply_filters( 'wpmvc_addon_customizer_sections_' . $main->config->get( 'namespace' ), $config->get( 'sections' ) ) as $id => $options ) {
                 $wp_customize->add_section( $id, $options );
             }
         // -- Settings
         if ( is_array( $config->get( 'settings' ) ) )
-            foreach ( $config->get( 'settings' ) as $id => $options ) {
+            foreach ( apply_filters( 'wpmvc_addon_customizer_settings_' . $main->config->get( 'namespace' ), $config->get( 'settings' ) ) as $id => $options ) {
                 $wp_customize->add_setting( $id, $options );
             }
         // -- Controls
         if ( is_array( $config->get( 'controls' ) ) )
-            foreach ( $config->get( 'controls' ) as $id => $options ) {
+            foreach ( apply_filters( 'wpmvc_addon_customizer_controls_' . $main->config->get( 'namespace' ), $config->get( 'controls' ) ) as $id => $options ) {
                 if ( ! array_key_exists( 'type' , $options ) )
                     $options['type'] = 'text';
                 switch ( $options['type'] ) {
@@ -191,7 +191,7 @@ class CustomizerController extends Controller
         if ( ! empty( $settings ) )
             $this->view->show( 'styles', [
                 'config'    => &$config,
-                'settings'  => &$settings,
+                'settings'  => apply_filters( 'wpmvc_addon_customizer_render_settings_' . $main->config->get( 'namespace' ), $settings ),
             ] );
     }
     /**
