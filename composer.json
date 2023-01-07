@@ -9,7 +9,8 @@
         "10quality/wpmvc-addon": "1.0.*"
     },
     "require-dev": {
-        "phpunit/phpunit": "4.4.*"
+        "phpunit/phpunit": "9.*",
+        "10quality/wpmvc-addon-testsuite": "dev-main"
     },
     "autoload": {
         "files": [
@@ -18,6 +19,11 @@
         "psr-4": {
             "WPMVC\\Addons\\Customizer\\": "addon/"
         }
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/framework/"
+        ]
     },
     "minimum-stability": "dev"
 }
